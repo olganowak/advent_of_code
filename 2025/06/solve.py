@@ -110,7 +110,7 @@ def part_2_numbers(lines):
     num_positions = len(lines[0])
 
     numbers = []
-    numbers_left_to_right = []
+    numbers_right_to_left = []
 
     for index in range(num_positions):
         # Collect characters from each row at this column position (measured from the right)
@@ -119,16 +119,16 @@ def part_2_numbers(lines):
         cleaned = num.strip()
         if cleaned == "":
             # Empty column → end of group
-            numbers_left_to_right.append(numbers)
+            numbers_right_to_left.append(numbers)
             numbers = []
         elif index == num_positions - 1:
             # Last column → finalize group
             numbers.append(int(cleaned))
-            numbers_left_to_right.append(numbers)
+            numbers_right_to_left.append(numbers)
         else:
             numbers.append(int(cleaned))
 
-    return numbers_left_to_right
+    return numbers_right_to_left
 
 
 print("Result 2:", calculate_sum(part_2_numbers(data_lines), operators[::-1]))
